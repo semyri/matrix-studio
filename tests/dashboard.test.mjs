@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {dashboardFrame,timeParts,weatherType,displayTemperature} from '../docs/dashboard.mjs';
+const options={date:new Date('2026-10-26T20:07:00Z'),timeZone:'America/Chicago',weather:{celsius:20,code:0,isDay:1}};
+const frame=dashboardFrame(options);
+assert.equal(frame.length,256);assert.ok(frame.every(c=>/^#[0-9a-f]{6}$/i.test(c)));
+assert.equal(timeParts(options.date,true,options.timeZone).hour,'03');assert.equal(timeParts(options.date,false,options.timeZone).hour,'15');
+assert.equal(timeParts(new Date('2026-11-01T06:59:00Z'),false,'America/Chicago').hour,'01');assert.equal(timeParts(new Date('2026-11-01T07:00:00Z'),false,'America/Chicago').hour,'01','Clock follows DST correctly');
+assert.equal(timeParts(new Date('2026-10-27T05:00:00Z'),false,'America/Chicago').hour,'00');assert.equal(timeParts(new Date('2026-10-27T05:00:00Z'),true,'America/Chicago').hour,'12');
+assert.ok(frame.slice(0,80).some(c=>c==='#ffb76b'),'Time row is present');assert.ok(frame.slice(96,176).some(c=>c==='#9ebca4'),'Date row is present');assert.ok(frame.slice(176).some(c=>c==='#ffcd63'),'Weather icon is present');assert.ok(frame.slice(176).some(c=>c==='#73cefa'),'Temperature is present');
+assert.equal(displayTemperature(0,'F'),'32');assert.equal(displayTemperature(20,'F'),'68');assert.equal(displayTemperature(-40,'F'),'-40');assert.equal(displayTemperature(20,'C'),'20');assert.equal(displayTemperature(null),'--');
+for(const [code,type] of [[0,'sun'],[2,'partly'],[3,'cloud'],[45,'fog'],[57,'rain'],[67,'rain'],[75,'snow'],[86,'snow'],[95,'storm'],[97,'storm'],[null,'unknown'],[999,'unknown']])assert.equal(weatherType(code),type);
+assert.equal(weatherType(0,0),'moon');
+for(const temp of [-100,-40,0,20,40,1000])assert.equal(dashboardFrame({...options,weather:{celsius:temp,code:95,isDay:1}}).length,256,'Temperature cannot extend the frame');
+const offline=dashboardFrame({...options,weather:null});assert.ok(!offline.slice(176).includes('#73cefa'),'Missing weather never presents a fabricated temperature');
+const large=dashboardFrame({...options,layout:'large'});assert.ok(!large.includes('#9ebca4'),'Original large clock stays available');
+console.log('PASS: compact clock/date/weather layout, timezones/DST, condition icons, temperatures, offline data, and frame bounds.');

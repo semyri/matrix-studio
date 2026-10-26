@@ -1,0 +1,70 @@
+# Matrix Studio
+
+A personal Bluetooth studio for the Merkury Innovations **MI Matrix 16×16 LED display**.
+
+**[Open Matrix Studio](https://semyri.github.io/matrix-studio/)**
+
+## Use
+
+1. Keep the display powered by USB.
+2. Disconnect other controllers, including the old GitHub demo or the previous Sites controller.
+3. Open Matrix Studio in a normal desktop **Edge or Chrome** tab.
+4. Choose **Connect display**, select **MI Matrix Display**, and pair.
+5. Draw, make text, import an image/GIF, or choose a preset; then **Send to display**.
+
+No site login, server installation, or weather API key is required.
+
+## Create
+
+- 16×16 pixel editor with colors and eraser.
+- Eight animation frames with playback and duplication.
+- Static text and eight-frame scrolling text.
+- PNG, JPG, WebP, and GIF import. GIF decoding depends on browser support.
+- Browser-local artwork shelf, with project import/export for backups.
+- Device power controls and adjustable gamma/brightness response.
+- Temporary sending by default. **Keep after power off** explicitly replaces saved device content.
+
+## Clock, date, and weather
+
+Choose **Clock → Time + date + weather** for three rows:
+
+- Top: HH:MM.
+- Middle: MM/DD.
+- Bottom: weather icon and temperature in the selected °F/°C unit.
+
+The larger original clock is also available. The compact physical display omits the
+temperature unit and AM/PM to save pixels; both are shown in the interface.
+
+Enter a city or US ZIP and choose **Update weather**. Settings stay in your browser.
+A setup link can use `?zip=76084&unit=F` to configure that browser.
+
+Time/date come from the PC running this page. Weather comes from
+[Open-Meteo](https://open-meteo.com/) current model estimates. In live mode it is
+refreshed every 15 minutes; conditions older than 45 minutes are replaced with an
+unavailable indicator. Choose **Start live clock** to send updates automatically.
+The page must stay open on a PC near the display with an active Bluetooth connection.
+Closing it or letting the PC sleep stops updates.
+
+## Hosting and development
+
+This is a buildless static website served by GitHub Pages from `main` → `/docs`.
+There is no backend, account system, or remote access to the display.
+Browser Bluetooth requires HTTPS or localhost; opening the HTML as a local file
+is not the supported way to run it.
+
+For local development, serve `docs/` with any static HTTP server.
+
+Run meaningful protocol and layout checks with Node:
+
+```sh
+node tests/protocol.test.mjs
+node tests/dashboard.test.mjs
+```
+
+Edits pushed to `main` publish automatically through GitHub Pages.
+
+## Protocol credit
+
+Bluetooth framing and device commands are adapted from
+[LostBeard/SpawnDev.MatrixLEDDisplay](https://github.com/LostBeard/SpawnDev.MatrixLEDDisplay)
+(MIT). Its upstream license is preserved in `docs/THIRD_PARTY_LICENSE.txt`.

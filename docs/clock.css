@@ -1,0 +1,11 @@
+.clock-options{align-items:flex-end;gap:12px}
+.clock-options>div:first-child{flex:1}
+.clock-options select{width:100%}
+.clock-actions{display:flex;gap:10px;align-items:center;margin-top:16px}
+.weather-status{color:#c8d8bb;font-size:11px;line-height:1.6;margin:8px 0}
+.weather-credit{font-size:9px;color:var(--muted);margin:5px 0 15px}
+.weather-credit a{color:#adc58b;text-underline-offset:3px}
+.clock-readout{font:10px/1.7 Consolas,monospace;color:var(--orange);margin:10px 0 0}
+#weatherUnit{flex:0 0 61px;width:61px;padding:10px 6px}
+#weatherLocation{min-width:130px}
+#weatherControls{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}
