@@ -1,8 +1,27 @@
-# Matrix Studio
+# Matrix Studio for the MI Matrix Display (MI-LNL62-999W)
 
-A personal Bluetooth studio for the Merkury Innovations **MI Matrix 16×16 LED display**.
+A browser-based Bluetooth controller for the **Merkury Innovations MI Matrix Display,
+model MI-LNL62-999W** — a **16×16 RGB LED pixel display**, also known as the
+**Merkury Innovations Multicolor Matrix LED Display**.
+
+Draw pixel art, send images and GIF animations, or show a live clock, date, and
+local weather directly from your PC using Web Bluetooth.
 
 **[Open Matrix Studio](https://semyri.github.io/matrix-studio/)**
+
+## Supported hardware
+
+| Detail | Device |
+| --- | --- |
+| Brand | Merkury Innovations |
+| Product | MI Matrix Display / Multicolor Matrix LED Display |
+| Model / manufacturer part number | **MI-LNL62-999W** |
+| Resolution | 16×16, 256 RGB pixels |
+| Connection | Bluetooth Low Energy (BLE); USB supplies power |
+| Browser device name | `MI Matrix Display` |
+
+The model number is documented by the
+[upstream hardware protocol project](https://github.com/offe/mi-led-display).
 
 ## Use
 
