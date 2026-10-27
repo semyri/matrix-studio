@@ -54,6 +54,14 @@ Choose **Clock → Time + date + weather** for three rows:
 The larger original clock is also available. The compact physical display omits the
 temperature unit and AM/PM to save pixels; both are shown in the interface.
 
+Each row has its own digit color. The time colon, date slash, and temperature degree
+dot have independent color controls and default to contrasting white. Changes update
+the preview immediately and are sent automatically when the live clock is running.
+These color choices are saved in your browser along with the other clock settings.
+Weather icons use natural multicolor palettes: yellow/orange sun, pale moon, gray
+clouds, blue rain, white snow, and yellow lightning. Partly cloudy night conditions
+show a moon with clouds. Icon colors stay independent of the temperature digit color.
+
 Enter a city or US ZIP and choose **Update weather**. Settings stay in your browser.
 A setup link can use `?zip=76084&unit=F` to configure that browser.
 
